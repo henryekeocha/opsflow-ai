@@ -264,5 +264,3 @@ Example output:
 - [x] CORS configured on both FastAPI and API Gateway
 
 ---
-
-*Built with [Anthropic Claude](https://anthropic.com), Next.js 14, FastAPI, AWS Lambda, and Terraform.*

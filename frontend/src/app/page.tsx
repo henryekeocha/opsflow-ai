@@ -119,10 +119,12 @@ function StatSkeleton() {
 export default function DashboardPage() {
   const [stats, setStats] = useState<StatsData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [backendOnline, setBackendOnline] = useState<boolean | null>(null);
   const [lastRefreshed, setLastRefreshed] = useState<Date | null>(null);
 
-  const fetchStats = useCallback(async () => {
+  const fetchStats = useCallback(async (manual = false) => {
+    if (manual) setRefreshing(true);
     try {
       const res = await fetch(`${BACKEND_URL}/api/stats`, { cache: "no-store" });
       if (!res.ok) throw new Error("not ok");
@@ -134,6 +136,7 @@ export default function DashboardPage() {
       setBackendOnline(false);
     } finally {
       setLoading(false);
+      setRefreshing(false);
     }
   }, []);
 
@@ -209,12 +212,12 @@ export default function DashboardPage() {
           <Button
             variant="outline"
             size="sm"
-            onClick={fetchStats}
+            onClick={() => fetchStats(true)}
             className="gap-1.5"
-            disabled={loading}
+            disabled={refreshing}
           >
-            <RefreshCcw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
-            Refresh
+            <RefreshCcw className={`h-3.5 w-3.5 ${refreshing ? "animate-spin" : ""}`} />
+            {refreshing ? "Refreshing..." : "Refresh"}
           </Button>
         </div>
       </div>

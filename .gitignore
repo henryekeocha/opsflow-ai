@@ -1,0 +1,33 @@
+# ========================
+# Root-level gitignore
+# ========================
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Env files — NEVER commit secrets
+.env
+.env.local
+.env.production
+.env.*.local
+
+# Terraform state — contains sensitive outputs
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/terraform.tfvars
+
+# Lambda build artifact
+lambda/lambda.zip
+lambda/package/
+
+# Build instructions (local only)
+OpsFlowAI_build_instructions.md

@@ -1,0 +1,8 @@
+{
+  "body": "{\"company\": \"Acme Corp\", \"contact_name\": \"Jane Smith\", \"job_title\": \"VP of Marketing\", \"email\": \"jane@acme.com\"}",
+  "requestContext": {
+    "http": {
+      "method": "POST"
+    }
+  }
+}
